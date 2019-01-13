@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+    postgres:
+      container_name: scheduling-postgres
+      image: postgres:alpine
+      volumes:
+        - ./:/var/www/Scheduling
+      ports:
+        - 5433:5432
+
+    php-fpm:
+      build: docker/php-fpm
+      working_dir: /var/www/Scheduling
+      volumes:
+          - ./:/var/www/Scheduling

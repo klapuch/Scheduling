@@ -1,0 +1,4 @@
+#!/bin/bash
+psql -U postgres -c "DROP DATABASE IF EXISTS scheduling_test";
+psql -U postgres -c "CREATE DATABASE scheduling_test";
+psql -U postgres scheduling_test < /var/www/Scheduling/schema.sql;

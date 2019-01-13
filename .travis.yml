@@ -1,0 +1,36 @@
+sudo: required
+
+services:
+  - docker
+
+language: php
+php:
+  - 7.3
+
+env:
+  - DOCKER_COMPOSE_VERSION=1.17.1
+
+before_install:
+  - sudo apt-get update -qq
+  - sudo apt-get -y -o Dpkg::Options::="--force-confnew" install docker-ce
+
+  - sudo rm /usr/local/bin/docker-compose
+  - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
+  - chmod +x docker-compose
+  - sudo mv docker-compose /usr/local/bin
+
+install:
+  - docker-compose -p scheduling up -d --build
+
+before_script:
+  - docker exec scheduling_php-fpm_1 make composer-install
+  - docker exec scheduling-postgres sh /var/www/Scheduling/docker/test_import
+
+script:
+  - docker exec -e "TRAVIS=true" scheduling_php-fpm_1 make ci
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
+
+after_failure:
+  - docker exec scheduling_php-fpm_1 make echo-failed-tests

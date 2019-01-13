@@ -1,0 +1,46 @@
+{
+  "name": "klapuch/scheduling",
+  "type": "library",
+  "description": "Scheduling for running taks",
+  "homepage": "https://github.com/klapuch/Scheduling",
+  "keywords": [
+    "cron",
+    "job",
+    "scheduling",
+    "task"
+  ],
+  "authors": [
+    {
+      "name": "Dominik Klapuch",
+      "email": "klapuchdominik@gmail.com",
+      "homepage": "https://www.github.com/klapuch",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "php": ">=7.3",
+    "klapuch/storage": "^0.0.1"
+  },
+  "require-dev": {
+    "nette/tester": "^2.0",
+    "jakub-onderka/php-parallel-lint": "^1.0.0",
+    "slevomat/coding-standard": "^4.8.3",
+    "consistence/coding-standard": "^3.0",
+    "phpstan/phpstan": "^0.10.1",
+    "phpstan/phpstan-strict-rules": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "Klapuch\\Scheduling\\": [
+        "Core/"
+      ]
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Klapuch\\Scheduling\\": [
+        "Tests/"
+      ]
+    }
+  }
+}
