@@ -19,7 +19,7 @@
   ],
   "require": {
     "php": ">=7.3",
-    "klapuch/storage": "^0.0.1"
+    "klapuch/storage": "*"
   },
   "require-dev": {
     "nette/tester": "^2.0",
